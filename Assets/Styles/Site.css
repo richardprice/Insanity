@@ -1,0 +1,140 @@
+﻿body {
+    background-color: #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+#coreUpper {
+    background-color: #E2E2E2;
+    width: 600px;
+    height: 50px;
+    border-left: 1px dashed black; 
+    border-right: 1px dashed black;
+    float: left;
+}
+
+#coreTitle {
+    background-image: url(/Assets/Images/coreTitle.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: auto;
+    height: 75px;
+    font-family: 'Telex', sans-serif;
+}
+
+#coreTitle div {
+    margin: 0 auto 0 auto;
+    width: 250px;
+}
+
+#coreTitle img {
+    float: right;
+    margin-top: 15px;
+}
+
+.coreContainer {
+    width: 900px;
+    margin: 0 auto 0 auto;
+    font-family: 'Telex', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #111;
+}
+
+.coreContainerFudge {
+    position: relative;
+    top: -15px;
+}
+
+#contentColumn {
+    background-color: #E2E2E2;
+    width: 500px;
+    float: left;
+    border: 1px dashed black;
+    padding: 15px 50px 15px 50px;
+    line-height: 20px;
+}
+
+#contentColumn div.code {
+    padding: 5px;
+    border-left: 1px dotted #FBB447;
+}
+
+#metaColumn {
+    background-color: #E2E2E2;
+    width: 250px;
+    float: right;
+    padding: 10px 10px 10px 10px;
+    line-height: 20px; 
+}
+
+#metaColumn img {
+    float: left;
+    padding: 0 10px 5px 0;
+}
+
+article {
+    
+}
+
+article header h2 {
+    color: #FBB447;
+    font-weight: normal;
+    font-size: 30px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    line-height: 1.1em;
+}
+
+article header p {
+    color: #bc9457;
+    font-weight: normal;
+    padding-top: 8px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
+
+article footer p {
+    color: #bc9457;
+    font-weight: normal;
+    padding-top: 8px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
+
+article header span {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 2px;
+    margin-right: 5px;
+    color: #ccc;
+}
+
+article p.quote {
+    border-left: 1px dotted #FBB447;
+    padding: 8px;
+}
+
+article p.note {
+    background-color: #FBB447;
+    color: whitesmoke;
+    padding: 8px;
+}

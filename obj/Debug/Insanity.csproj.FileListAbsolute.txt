@@ -1,0 +1,8 @@
+D:\Development\Insanity\bin\Insanity.dll
+D:\Development\Insanity\bin\Insanity.pdb
+D:\Development\Insanity\obj\Debug\Insanity.csprojResolveAssemblyReference.cache
+D:\Development\Insanity\obj\Debug\Insanity.dll
+D:\Development\Insanity\obj\Debug\Insanity.pdb
+D:\Development\Insanity\bin\Nancy.dll
+D:\Development\Insanity\bin\Nancy.Hosting.Aspnet.dll
+D:\Development\Insanity\bin\Nancy.ViewEngines.Razor.dll
