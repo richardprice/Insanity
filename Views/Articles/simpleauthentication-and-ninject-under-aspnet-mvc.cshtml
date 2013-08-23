@@ -11,7 +11,7 @@
         <p>This post will show you how to set up SimpleAuthentication in a brand new basic ASP.Net MVC 4 using Ninject as the Inversion of Control (IoC) or Dependency Injection (DI) provider.</p>
         
         <h3>Lets setup a Visual Studio project</h3>
-        <p>Open Visual Studio 2012 and create a new project.  We want to create an <code>ASP.Net MVC 4 Web Application</code>, so choose that project type which should be under <code>Installed - Templates - Visual C# - Web</code>.</p>
+        <p>Open Visual Studio 2012 and create a new project.  We want to create an <code>ASP.Net MVC 4 Web Application</code>, so choose that project type which should be under <code>Installed &rarr; Templates &rarr; Visual C# &rarr; Web</code>.</p>
         
         <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/1-choose-a-project.jpg" alt="1 Choose a Project" />
         
@@ -25,12 +25,12 @@
         
         <p>The project we have created gives us a fairly basic configuration - routing is configured for a default route, but we have no views or controllers, so lets create some first.</p>
         
-        <p>Right click on the Controllers folder and choose Add - Controller... from the context menu.  Name the new controller <code>HomeController</code> and choose <code>Empty MVC Controller</code> as the template option.</p>
+        <p>Right click on the Controllers folder and choose Add &rarr; Controller... from the context menu.  Name the new controller <code>HomeController</code> and choose <code>Empty MVC Controller</code> as the template option.</p>
         
         <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/3-add-new-controller.jpg" alt="3 Add new controller" />
         <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/4-add-home-controller.jpg" alt="4 Add home controller" />
         
-        <p>Right click on the Views folder and choose Add - New Folder and call it <code>Home</code>.  Then right click on that new Home folder and choose Add - View...  Call the new view <code>Index</code> and click OK.</p>
+        <p>Right click on the Views folder and choose Add &rarr; New Folder and call it <code>Home</code>.  Then right click on that new Home folder and choose Add &rarr; View...  Call the new view <code>Index</code> and click OK.</p>
         
         <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/5-add-new-view.jpg" alt="5 Add new view" />
         <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/6-add-home-index-view.jpg" alt="6 Add home index view" />
@@ -39,7 +39,7 @@
         
         <p>Nuget is a fantastic package manager, and these days its used heavily in Visual Studio development to bring in third party packages, which is exactly what we are going to do here!</p>
         
-        <p>So, in Visual Studio 2012, go to your top menu and choose <code>View - Other Windows - Package Manager Console</code> and a new window should open at the bottom of your Visual Studio window.</p>
+        <p>So, in Visual Studio 2012, go to your top menu and choose <code>View &rarr; Other Windows &rarr; Package Manager Console</code> and a new window should open at the bottom of your Visual Studio window.</p>
         
         <p>Lets go ahead and add Ninject first of all, so in the Package Manager Console window type <code>install-package Ninject.MVC3</code> (don't worry, this will work fine in MVC 4) and press enter.  Something will happen, and things will be installed - don't be worried if more than one thing is installed, Nuget will automatically fetch all dependencies as well, how cool is that!</p>
         
@@ -59,7 +59,7 @@
         
         <script src="https://gist.github.com/richardprice/6320518.js"></script>
 
-        <p>We are going to add a couple of classes which act as view models to pass data to some very basic views we are going to setup - so right click on the Models folder and choose <code>Add - Class...</code>, name the class <code>IndexViewModel.cs</code> and click OK.  In the resultant class that is added to the project, replace the contents with that below:</p>
+        <p>We are going to add a couple of classes which act as view models to pass data to some very basic views we are going to setup - so right click on the Models folder and choose <code>Add &rarr; Class...</code>, name the class <code>IndexViewModel.cs</code> and click OK.  In the resultant class that is added to the project, replace the contents with that below:</p>
         
         <script src="https://gist.github.com/richardprice/6320340.js"></script>
 
