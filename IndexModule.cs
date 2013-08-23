@@ -6,10 +6,7 @@
     {
         public IndexModule()
         {
-            Get["/"] = parameters =>
-            {
-                return View["~/views/alt-index.cshtml"];
-            };  
+            Get["/"] = parameters => View["alt-index"];  
         }
     }
 }
