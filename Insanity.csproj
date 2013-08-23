@@ -99,6 +99,7 @@
     <Content Include="Views\index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Articles\simpleauthentication-and-ninject-under-aspnet-mvc.cshtml" />
+    <Content Include="Views\Articles\simpleauthentication-and-autofac-under-aspnet-mvc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
