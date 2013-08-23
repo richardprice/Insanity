@@ -6,7 +6,15 @@
     {
         public IndexModule()
         {
-            Get["/"] = parameters => View["alt-index"];  
+            Get["/"] = parameters =>
+            {
+                return View["index"];
+            };
+
+            Get["/{name}"] = paramters =>
+            {
+                return View["Articles/" + paramters.name];
+            };
         }
     }
 }

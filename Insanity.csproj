@@ -63,6 +63,24 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\1-choose-a-project.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\10-add-simpleauthenticationcallbackhandler-class.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\13-note-visual-studio-project-url.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\14-go-to-facebook-developer-page.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\14a--create-new-facebook-app.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\14b-enable-facebook-login.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\14c-add-oauth-key-and-secret-to-webconfig.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\2-choose-mvc-project-template.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\3-add-new-controller.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\4-add-home-controller.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\5-add-new-view.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\6-add-home-index-view.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\7-add-ninject-through-nuget.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\8-add-simpleauthentication-through-nuget.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\8a-add-indexviewmodel-class.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\8b-add-authenticatecallbackviewmodel-class.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\8c-add-authenticatecallback-view.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\9-add-callbackhandler-class.jpg" />
     <Content Include="Assets\Images\author.png" />
     <Content Include="Assets\Images\coreTitle.png" />
     <Content Include="Assets\Images\siteTitle.fw.png" />
@@ -78,14 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Views\index.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <BrowseToURL>~/</BrowseToURL>
-    </Content>
-    <Content Include="Views\alt-index.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <BrowseToURL>~/</BrowseToURL>
-    </Content>
+    <Content Include="Views\index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Articles\simpleauthentication-and-ninject-under-aspnet-mvc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -107,7 +120,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3897</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:12116/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

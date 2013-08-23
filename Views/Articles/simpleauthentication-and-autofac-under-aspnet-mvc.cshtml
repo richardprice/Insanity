@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "Shared/_Layout.cshtml";
+}
+<article>
+    <header>
+        <h2>SimpleAuthentication and AutoFac under Asp.Net MVC 4</h2>
+        <p>posted a while ago</p>
+    </header>
+    <div>
+        <p>SimpleAuthentication (formerly WorldDomination) is a great solution for implementing social authentication in your web application, with it supporting OAuth 1 & 2, as well as OpenID.</p>
+        <p>This post will show you how to set up SimpleAuthentication in a brand new basic ASP.Net MVC 4 using Ninject as the Inversion of Control (IoC) or Dependency Injection (DI) provider.</p>
+        
+        <h3>Lets setup a Visual Studio project</h3>
+        <p>Open Visual Studio 2012 and create a new project.  We want to create an <code>ASP.Net MVC 4 Web Application</code>, so choose that project type which should be under <code>Installed - Templates - Visual C# - Web</code>.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/1-choose-a-project.jpg" alt="1 Choose a Project" />
+        
+        <p>Give it a name, I'm calling mine <code>SimpleAuthNinjectExample</code>, you can call yours whatever you like, but make sure you change any namespaces I refer to in code further on in this guide.</p>
+        
+        <p>The next screen will give you an option to choose what type of ASP.Net MVC Web Application template you want to start with - all of these options give you a project with a differing amount of setup included, and we want a fairly basic one for this demonstration to show how easy it is to setup SimpleAuthentication, so choose <code>Basic</code> and click OK.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/2-choose-mvc-project-template.jpg" alt="2 Choose an MVC project template" />
+        
+        <h3>Basic setup of the project</h3>
+        
+        <p>The project we have created gives us a fairly basic configuration - routing is configured for a default route, but we have no views or controllers, so lets create some first.</p>
+        
+        <p>Right click on the Controllers folder and choose Add - Controller... from the context menu.  Name the new controller <code>HomeController</code> and choose <code>Empty MVC Controller</code> as the template option.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/3-add-new-controller.jpg" alt="3 Add new controller" />
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/4-add-home-controller.jpg" alt="4 Add home controller" />
+        
+        <p>Right click on the Views folder and choose Add - New Folder and call it <code>Home</code>.  Then right click on that new Home folder and choose Add - View...  Call the new view <code>Index</code> and click OK.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/5-add-new-view.jpg" alt="5 Add new view" />
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/6-add-home-index-view.jpg" alt="6 Add home index view" />
+        
+        <h3>Add our external packages using Nuget</h3>
+        
+        <p>Nuget is a fantastic package manager, and these days its used heavily in Visual Studio development to bring in third party packages, which is exactly what we are going to do here!</p>
+        
+        <p>So, in Visual Studio 2012, go to your top menu and choose <code>View - Other Windows - Package Manager Console</code> and a new window should open at the bottom of your Visual Studio window.</p>
+        
+        <p>Lets go ahead and add Ninject first of all, so in the Package Manager Console window type <code>install-package Ninject.MVC3</code> (don't worry, this will work fine in MVC 4) and press enter.  Something will happen, and things will be installed - don't be worried if more than one thing is installed, Nuget will automatically fetch all dependencies as well, how cool is that!</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/7-add-ninject-through-nuget.jpg" alt="7 Add Ninject through Nuget" />
+        
+        <p>Right, lets add SimpleAuthentiction in the same way.  In the Package Manager Console window type <code>install-package SimpleAuthentication.Mvc</code> and press enter.  Again, some magic will happen, and stuff will be installed.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/8-add-simpleauthentication-through-nuget.jpg" alt="8 Add SimpleAuthentication through Nuget" />
+        
+        <p>Ok, done - lets move on to...</p>
+        
+        <h3>Adding bits and pieces for handling authentication</h3>
+        
+        <p>We need enough infrastructure here to be able to request authentication and handle a response - SimpleAuthentication will actually deal with everything else, and I will explain whats going on as we go.</p>
+        
+        <p>Firstly, lets set up a simple home screen that allows us to request a login.  Open up the <code>Views/Home/Index.cshtml</code> view, and replace its contents with the following:</p>
+        
+        <script src="https://gist.github.com/richardprice/6320518.js"></script>
+
+        <p>We are going to add a couple of classes which act as view models to pass data to some very basic views we are going to setup - so right click on the Models folder and choose <code>Add - Class...</code>, name the class <code>IndexViewModel.cs</code> and click OK.  In the resultant class that is added to the project, replace the contents with that below:</p>
+        
+        <script src="https://gist.github.com/richardprice/6320340.js"></script>
+
+        <p>Next, add a second class but this time call it <code>AuthenticateCallbackViewModel.cs</code>, and replace its contents with the following:</p>
+        
+        <script src="https://gist.github.com/richardprice/6320348.js"></script>
+        
+        <p>Ok, now we are going to add another view, so create a new folder under <code>Views</code> and call it <code>SimpleAuthentication</code>, then go ahead and create a view in that folder and call it <code>AuthenticateCallback</code>.  Replace the contents of the new view with the following:</p>
+        
+        <script src="https://gist.github.com/richardprice/6320403.js"></script>
+        
+        <p><code>AuthenticateCallback.cshtml</code> is simply a view that we can use to demonstrate the fact that the authentication worked, and output some information we have received from the authentication provider.  In reality, you wouldn't need this in an actual application as you would be doing your user management here, such as presenting them with their home screen etc.</p>
+        
+        <p>The next class is very important to the process, as it hooks us into SimpleAuthentication and allows us to process the responses - so in the root folder of the project, create a new class and call it <code>SimpleAuthenticationCallbackHandler.cs</code>, and replace its contents with the following:</p>
+        
+        <script src="https://gist.github.com/richardprice/6320448.js"></script>
+        
+        <p>There is an important part of the above code which is worth explaining - this class needs to implement the SimpleAuthentication.Mvc.IAuthenticationCallbackProvider interface so SimpleAuthentication can know what to pass back.  Now we have the class, but SimpleAuthentication doesn't know anything about it - simply implementing the interface doesn't actually do anything!  So now, we are going to tell SimpleAuthentication how to use our class via our Dependency Injector...</p>
+        
+        <h3>Wiring up SimpleAuthentication - all it takes is some DI magic...</h3>
+
+        <p>A little earlier on, we installed the Ninject dependency injector, so now lets use that to tell SimpleAuthentication and our SimpleAuthenticationCallbackHandler class to work together!  So open up the file <code>App_Start/NinjectWebCommon.cs</code> and find the method called <code>RegisterServices</code> - add the following code into the body of that method:</p>
+    
+        <script src="https://gist.github.com/richardprice/6320570.js"></script>
+    
+        <p>This is an ideal example of the worth of Dependency Injection - when SimpleAuthentication was written, the author had no idea what you needed to do once his code had handled the difficult bit, so instead of limiting you to the return value of a <code>SimpleAuthentication.DoLogin()</code> method, he instead gives you a very rich return data set sent to your very own class.  Here, we are literally telling Ninject to use our class whenever a class requires a constructor argument of <code>SimpleAuthentication.Mvc.IAuthenticationCallbackProvider</code> - and thats it, thats all the wiring up we need to do to allow our code and SimpleAuthentication to cooperate!</p>
+        
+        <p>So, our <code>AuthenticateCallbackHandler</code> class is very basic, but what would you actually do in there normally?  Well, you can store the users access token against your own database record for that user, you can set up the persistent authentication tickets through ASP.Net Authentication, or you can throw away everything the authentication provider gives you and just chuckle at the fact that you made the user jump through hoops, its entirely up to you!</p>
+        
+        <p>Anyway, on with the show!</p>
+        
+        <h3>Getting Facebook to know and love you</h3>
+        
+        <p>In order to actually authenticate the user, we need something to authenticate against - luckily, there are loads of free authentication providers out there, so lets pick an obvious one like Facebook.</p>
+        
+        <p>Firstly, you need a bit of information to provide to Facebook in a moment - namely, what URL does your app use.  When you deploy your code, it will of course have a normal URL, but in Visual Studio you typically end up with a random port on localhost, so we need to know what that is.  Click on the project name in Solution Explorer, and then take a look at the property window, within which should be an entry for URL.  Note the value of that entry.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/13-note-visual-studio-project-url.jpg" alt="13 Note the visual studio project url" />
+        
+        <p>Next, go to the <a href="https://developers.facebook.com/apps">Facebook Developer Apps Page</a> and click on <code>+ Create New App</code>.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/14-go-to-facebook-developer-page.jpg" alt="14 Go to the Facebook Developer Apps Page" />
+        
+        <p>Give your new Facebook app a name, it doesn't matter what for the purposes of this guide, so long as its not already been taken (Facebook won't let you create it if it has).  Also give it a Category which isn't "other", otherwise Facebook will complain later on!</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/14a--create-new-facebook-app.jpg" alt="14a Create new Facebook App" />
+        
+        <p>Now we need to enable <code>Website with Facebook Login</code> - for the <code>Site URL</code> enter the Visual Studio project URL we noted earlier.  Told you we would need that!</p>
+        
+        <p>Click <code>Save Changes</code> and thats your Facebook app created.  Keep this window open for a moment.</p>
+        
+        <h3>Telling SimpleAuthentication about Facebook</h3>
+        
+        <p>The last thing we need to do is tell SimpleAuthentication about your Facebook app credentials, so open up your Web.Config and find a second called <code>authenticationProviders</code> - it should have a nested section called <code>providers</code>, within which may be a bunch of entries, including Facebook.</p>
+        
+        <p>These entries have three values - a name, a key and a secret.  The name you should leave as <code>facebook</code>, but we can enter the key and secret - go back to your Facebook app page and note at the top that you have an <code>App ID</code> and an <code>App Secret</code>.  Not identical terms, but precisely what we want.  Take the value from <code>App ID</code> and insert it as the value of key in the Web.Config provider entry, and take the value of <code>App Secret</code> and insert it as the value of secret and save your Web.Config.</p>
+        
+        <p>And thats the end of setting up SimpleAuthentication - you just need to test it!  So save everything and hit F5 - when the index page loads, hit "Login with Facebook" and then the magic starts :)</p>
+        
+        <p>Congratulations on your first social authentication login!</p>
+    </div>
+    <footer>
+    </footer>
+</article>

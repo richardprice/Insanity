@@ -6,3 +6,5 @@ D:\Development\Insanity\obj\Debug\Insanity.pdb
 D:\Development\Insanity\bin\Nancy.dll
 D:\Development\Insanity\bin\Nancy.Hosting.Aspnet.dll
 D:\Development\Insanity\bin\Nancy.ViewEngines.Razor.dll
+D:\Development\Insanity\bin\System.Web.Razor.Unofficial.dll
+D:\Development\Insanity\bin\System.Web.Razor.Unofficial.pdb
