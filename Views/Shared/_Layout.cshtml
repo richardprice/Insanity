@@ -13,11 +13,16 @@
     </div>
     <div id="coreTitle">
         <div>
+
             <img src="/Assets/Images/siteTitle.png" alt="Insanity" />
         </div>
     </div>
     <div class="coreContainer coreContainerFudge clearfix">
         <div id="contentColumn">
+                        @if (ViewBag.GoHome)
+            {
+                <a href="/">&larr; Home</a>
+            }
             @RenderBody()
         </div>
         
@@ -25,6 +30,9 @@
             <img src="/Assets/Images/author.png" rel="Richard Price"/>
             <p>Hey, I'm <strong>Richard Price</strong>, a .Net evangelist in Norwich, UK.</p>
             <p>And this is my blog.  My musings, if you will.  Or even if you won't, cos its mine and I get to decide those things!</p>
+            
+<a href="https://twitter.com/RichardPrice" class="twitter-follow-button" data-show-count="false">Follow @@RichardPrice</a>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
         </div>
     </div>
 </body>

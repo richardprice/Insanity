@@ -160,16 +160,16 @@ article footer a:visited {
 article footer {
     height: 20px;
 }
-article a {
+#contentColumn a {
     color: #FBB447;
     text-decoration: none;
 }
 
-article a:hover {
+#contentColumn a:hover {
     color: #FBB447;
     text-decoration: underline;
 }
 
-article a:visited {
+#contentColumn a:visited {
     color: #FBB447;
 }

@@ -13,6 +13,7 @@
 
             Get["/{name}"] = paramters =>
             {
+                ViewBag.GoHome = true;
                 return View["Articles/" + paramters.name];
             };
         }

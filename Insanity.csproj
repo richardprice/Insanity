@@ -63,6 +63,8 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationAutofacMvc\13-note-visual-studio-project-urlL.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationAutofacMvc\7-add-autofac-using-nuget.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\1-choose-a-project.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\10-add-simpleauthenticationcallbackhandler-class.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\13-note-visual-studio-project-url.jpg" />
@@ -83,6 +85,7 @@
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\9-add-callbackhandler-class.jpg" />
     <Content Include="Assets\Images\author.png" />
     <Content Include="Assets\Images\coreTitle.png" />
+    <Content Include="Assets\Images\favicon.ico" />
     <Content Include="Assets\Images\siteTitle.fw.png" />
     <Content Include="Assets\Images\siteTitle.png" />
     <Content Include="Assets\Styles\Site.css" />
