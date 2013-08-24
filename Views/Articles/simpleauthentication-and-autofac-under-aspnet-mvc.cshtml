@@ -40,10 +40,10 @@
         <p>Nuget is a fantastic package manager, and these days its used heavily in Visual Studio development to bring in third party packages, which is exactly what we are going to do here!</p>
         
         <p>So, in Visual Studio 2012, go to your top menu and choose <code>View &rarr; Other Windows &rarr; Package Manager Console</code> and a new window should open at the bottom of your Visual Studio window.</p>
-   s     
+             
         <p>Lets go ahead and add AutoFac first of all, so in the Package Manager Console window type <code>install-package AutoFac.MVC4</code> and press enter.  Something will happen, and things will be installed - don't be worried if more than one thing is installed, Nuget will automatically fetch all dependencies as well, how cool is that!</p>
         
-        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationAutofacMvc/7-add-autofac-through-nuget.jpg" alt="7 Add AutoFac through Nuget" />
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationAutofacMvc/7-add-autofac-using-nuget.jpg" alt="7 Add AutoFac through Nuget" />
         
         <p>Right, lets add SimpleAuthentiction in the same way.  In the Package Manager Console window type <code>install-package SimpleAuthentication.Mvc</code> and press enter.  Again, some magic will happen, and stuff will be installed.</p>
         
@@ -81,7 +81,7 @@
         
         <h3>Wiring up SimpleAuthentication - all it takes is some DI magic...</h3>
 
-        <p>A little earlier on, we installed the Ninject dependency injector, so now lets use that to tell SimpleAuthentication and our SimpleAuthenticationCallbackHandler class to work together!  So open up the file <code>Global.asax.cs</code> (if you can't see it, then open <code>Global.asax</code>, that will open the .cs for you) and replace the contents of that file with the following:</p>
+        <p>A little earlier on, we installed the AutoFac dependency injector, so now lets use that to tell SimpleAuthentication and our SimpleAuthenticationCallbackHandler class to work together!  So open up the file <code>Global.asax.cs</code> (if you can't see it, then open <code>Global.asax</code>, that will open the .cs for you) and replace the contents of that file with the following:</p>
     
         <script src="https://gist.github.com/richardprice/6321583.js"></script>
     
