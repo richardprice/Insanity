@@ -65,6 +65,13 @@
   <ItemGroup>
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationAutofacMvc\13-note-visual-studio-project-urlL.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationAutofacMvc\7-add-autofac-using-nuget.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\1.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\2.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\3.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\4.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\5.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\6.jpg" />
+    <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNancy\7.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\1-choose-a-project.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\10-add-simpleauthenticationcallbackhandler-class.jpg" />
     <Content Include="Assets\Images\ArticleImages\SimpleAuthenticationNinjectMvc\13-note-visual-studio-project-url.jpg" />
@@ -103,6 +110,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Articles\simpleauthentication-and-ninject-under-aspnet-mvc.cshtml" />
     <Content Include="Views\Articles\simpleauthentication-and-autofac-under-aspnet-mvc.cshtml" />
+    <Content Include="Views\Articles\simpleauthentication-under-nancyfx.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

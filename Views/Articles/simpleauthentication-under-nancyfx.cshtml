@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "Shared/_Layout.cshtml";
+}
+<article>
+    <header>
+        <h2>SimpleAuthentication under NancyFX</h2>
+        <p>posted a while ago</p>
+    </header>
+    <div>
+        <p>SimpleAuthentication (formerly WorldDomination) is a great solution for implementing social authentication in your web application, with it supporting OAuth 1 & 2, as well as OpenID.</p>
+        <p>This post will show you how to set up SimpleAuthentication in a brand new NancyFX project.  If you have read my other articles on setting up SimpleAuthentication under ASP.Net MVC, you might notice that we used either Ninject or AutoFac as dependency injectors to set up SimpleAuthentication - we don't need to do that with NancyFX,
+            as it includes some automagical IoC of its own which does the wiring for us.</p>
+        
+        <h3>Pre-requisites</h3>
+        
+        <p>As NancyFX is an independent project, you will need to install the <a href="http://visualstudiogallery.msdn.microsoft.com/f1e29f61-4dff-4b1e-a14b-6bd0d307611a">Visual Studio project templates</a> for it from the Visual Studio Gallery</p>
+        <h3>Lets setup a Visual Studio project</h3>
+
+        <p>Open Visual Studio 2012 and create a new project.  We want to create an <code>Nancy Application with ASP.Net MVC 4 hosting and Razor</code>, so choose that project type which should be under <code>Installed &rarr; Templates &rarr; Visual C# &rarr; Web</code>.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNancy/1.jpg" alt="1 Choose a Project" />
+        
+        <p>Give it a name, I'm calling mine <code>SimpleAuthNancyExample</code>, you can call yours whatever you like, but make sure you change any namespaces I refer to in code further on in this guide.</p>
+        
+        <h3>Basic setup of the project</h3>
+        
+        <p>The project we have created gives us a fairly basic configuration - we have a standard but fairly useless index view, but we have no nancy modules, so lets create one first before we move on.</p>
+        
+        <p>Right click on the project and choose <code>Add &rarr; New Folder</code> from the context menu, and call it <code>Modules</code>.  Then in that folder, right click again and choose <code>Add &rarr; Class...</code> and call it <code>HomeModule.cs</code>.</p>
+
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNancy/2.jpg" alt="2 Add new module" />
+        
+        <p>In the resultant class that is added to the project, replace the contents with that below:</p>
+
+        <script src="https://gist.github.com/richardprice/6596753.js"></script>
+        
+        <p>Ok, lets set up a couple of views now - firstly, lets make the index view actually do something, so open the <code>index.cshtml</code> file under <code>Views</code> and replace its contents with:</p>
+        
+        <script src="https://gist.github.com/richardprice/6596806.js"></script>
+        
+        <p>This view will now let us begin the authentication process by requesting a Facebook login.</p>
+
+        <p>Now, create a second view by right clicking on the <code>Views</code> folder and choosing <code>Add &rarr; HTML Page</code>.</p>
+            
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNancy/3.jpg" alt="3 Add new view" />
+
+        <p>Call it <code>AuthenticateCallback.cshtml</code> and replace its contents with:</p>
+        
+        <script src="https://gist.github.com/richardprice/6596869.js"></script>
+        
+        <p><code>AuthenticateCallback.cshtml</code> is simply a view that we can use to demonstrate the fact that the authentication worked, and output some information we have received from the authentication provider.  In reality, you wouldn't need this in an actual application as you would be doing your user management here, such as presenting them with their home screen etc.</p>
+        
+        <h3>Add our external packages using Nuget</h3>
+        
+        <p>Nuget is a fantastic package manager, and these days its used heavily in Visual Studio development to bring in third party packages, which is exactly what we are going to do here!</p>
+        
+        <p>So, in Visual Studio 2012, go to your top menu and choose <code>View &rarr; Other Windows &rarr; Package Manager Console</code> and a new window should open at the bottom of your Visual Studio window.</p>
+        
+        <p>Right, as mentioned before we don't need any IoC providers, so lets get right on and add SimpleAuthentiction.  In the Package Manager Console window type <code>install-package Nancy.SimpleAuthentication</code> and press enter.  Some magic will happen, and stuff will be installed.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNancy/4.jpg" alt="4 Add SimpleAuthentication through Nuget" />
+        
+        <p>Ok, done - lets move on to...</p>
+        
+        <h3>Adding bits and pieces for handling authentication</h3>
+
+        <p>We are going to add a class which act as a view model to pass data to some of the views we have setup - so right click on the Models folder (create one if it doesn't exist) and choose <code>Add &rarr; Class...</code>, name the class <code>IndexViewModel.cs</code> and click OK.  In the resultant class that is added to the project, replace the contents with that below:</p>
+        
+        <script src="https://gist.github.com/richardprice/6596977.js"></script>
+        
+        <p>The next class is very important to the process, as it hooks us into SimpleAuthentication and allows us to process the responses - so in the root folder of the project, create a folder called <code>Helpers</code> and within there create a new class and call it <code>SimpleAuthenticationCallbackHandler.cs</code>, and replace its contents with the following:</p>
+        
+        <script src="https://gist.github.com/richardprice/6597027.js"></script>
+        
+        <p>There is an important part of the above code which is worth explaining - this class needs to implement the Nancy.SimpleAuthentication.IAuthenticationCallbackProvider interface so SimpleAuthentication can know what to pass back.  Now we have the class, but SimpleAuthentication doesn't know anything about it - with ASP.Net MVC, you have to tell SimpleAuthentication how to use our class, but we have it easy here as NancyFX will do that for us!  How cool is that?</p>
+        
+        <p>So, our <code>AuthenticateCallbackHandler</code> class is very basic, but what would you actually do in there normally?  Well, you can store the users access token against your own database record for that user, you can set up the persistent authentication tickets through ASP.Net Authentication, or you can throw away everything the authentication provider gives you and just chuckle at the fact that you made the user jump through hoops, its entirely up to you!</p>
+        
+        <p>Anyway, on with the show!</p>
+        
+        <h3>Getting Facebook to know and love you</h3>
+        
+        <p>In order to actually authenticate the user, we need something to authenticate against - luckily, there are loads of free authentication providers out there, so lets pick an obvious one like Facebook.</p>
+        
+        <p>Firstly, you need a bit of information to provide to Facebook in a moment - namely, what URL does your app use.  When you deploy your code, it will of course have a normal URL, but in Visual Studio you typically end up with a random port on localhost, so we need to know what that is.  Click on the project name in Solution Explorer, and then take a look at the property window, within which should be an entry for URL.  Note the value of that entry.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNancy/5.jpg" alt="5 Note the visual studio project url" />
+        
+        <p>Next, go to the <a href="https://developers.facebook.com/apps">Facebook Developer Apps Page</a> and click on <code>+ Create New App</code>.</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNinjectMvc/14-go-to-facebook-developer-page.jpg" alt="6 Go to the Facebook Developer Apps Page" />
+        
+        <p>Give your new Facebook app a name, it doesn't matter what for the purposes of this guide, so long as its not already been taken (Facebook won't let you create it if it has).  Also give it a Category which isn't "other", otherwise Facebook will complain later on!</p>
+        
+        <img src="/Assets/Images/ArticleImages/SimpleAuthenticationNancy/6.jpg" alt="6a Create new Facebook App" />
+        
+        <p>Now we need to enable <code>Website with Facebook Login</code> - for the <code>Site URL</code> enter the Visual Studio project URL we noted earlier.  Told you we would need that!</p>
+        
+        <p>Click <code>Save Changes</code> and thats your Facebook app created.  Keep this window open for a moment.</p>
+        
+        <h3>Telling SimpleAuthentication about Facebook</h3>
+        
+        <p>The last thing we need to do is tell SimpleAuthentication about your Facebook app credentials, so open up your Web.Config and find a second called <code>authenticationProviders</code> - it should have a nested section called <code>providers</code>, within which may be a bunch of entries, including Facebook.</p>
+        
+        <p>These entries have three values - a name, a key and a secret.  The name you should leave as <code>facebook</code>, but we can enter the key and secret - go back to your Facebook app page and note at the top that you have an <code>App ID</code> and an <code>App Secret</code>.  Not identical terms, but precisely what we want.  Take the value from <code>App ID</code> and insert it as the value of key in the Web.Config provider entry, and take the value of <code>App Secret</code> and insert it as the value of secret and save your Web.Config.</p>
+        
+        <p>And thats the end of setting up SimpleAuthentication - you just need to test it!  So save everything and hit F5 - when the index page loads, hit "Login with Facebook" and then the magic starts :)</p>
+        
+        <p>Congratulations on your first social authentication login!</p>
+    </div>
+    <footer>
+    </footer>
+</article>
